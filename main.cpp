@@ -1,24 +1,24 @@
+#include "slot.h"
 #include <iostream>
 #include <cstdlib>
-#include <ctime>
-#include "game.h"
-#include "player.h"
+#include <windows.h>
 
 using namespace std;
 
-int main(){
+string symbol[5] = {"A","B","C","Cherry","7"};
 
-    srand(time(0));
+void spinSlot(string r[3]){
 
-    Player player;
+    cout<<"Spinning...\n";
 
-    player.token = 100;
-    player.maxToken = 100;
-    player.round = 0;
+    for(int i=0;i<5;i++){
+        cout<<"[ "<<symbol[rand()%5]<<" | "<<symbol[rand()%5]<<" | "<<symbol[rand()%5]<<" ]\r";
+        Sleep(200);
+    }
 
-    cout << "===== SLOT MACHINE GAME =====\n";
+    for(int i=0;i<3;i++){
+        r[i] = symbol[rand()%5];
+    }
 
-    playGame(player);
-
-    return 0;
+    cout<<"Result: ["<<r[0]<<" | "<<r[1]<<" | "<<r[2]<<"]\n";
 }
