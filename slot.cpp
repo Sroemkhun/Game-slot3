@@ -12,7 +12,7 @@ void spinSlot(string r[3]){
     cout<<"Spinning...\n";
 
     for(int i=0;i<5;i++){
-        cout<<"| "<<symbol[rand()%5]<<" | "<<symbol[rand()%5]<<" | "<<symbol[rand()%5]<<" |\r";
+        cout<<"[ "<<symbol[rand()%5]<<" | "<<symbol[rand()%5]<<" | "<<symbol[rand()%5]<<" ]\r";
         Sleep(200);
     }
 
@@ -20,5 +20,5 @@ void spinSlot(string r[3]){
         r[i] = symbol[rand()%5];
     }
 
-    cout<<"| "<<r[0]<<" | "<<r[1]<<" | "<<r[2]<<" |\n";
+    cout<<"Result: ["<<r[0]<<" | "<<r[1]<<" | "<<r[2]<<"]\n";
 }
