@@ -28,9 +28,9 @@ void doubleOrNothing(int &reward){
 
     if(choice=='y'){
 
-        int r=rand()%2;
+        int r=rand()%10;
 
-        if(r==1){
+        if( r < 3){
             reward*=2;
             cout<<"Lucky! Reward doubled!\n";
         }
