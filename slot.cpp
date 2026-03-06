@@ -1,44 +1,24 @@
 #include "slot.h"
-#include <cstdlib>
 #include <iostream>
-#include <thread>
-#include <chrono>
+#include <cstdlib>
+#include <windows.h>
 
 using namespace std;
 
-string randomSymbol(){
+string symbol[5] = {"A","B","C","Cherry","7"};
 
-    int r = rand()%10;
+void spinSlot(string r[3]){
 
-    if(r==0) return "7";
-    if(r<3) return "Cherry";
-    if(r<6) return "A";
-    if(r<8) return "@";
+    cout<<"Spinning...\n";
 
-    return "฿";
-}
-
-void spinSlot(string result[3]){
-
-    string a="?",b="?",c="?";
-
-    cout<<"\nSpinning...\n";
-
-    for(int i=0;i<15;i++){
-
-        a=randomSymbol();
-        b=randomSymbol();
-        c=randomSymbol();
-
-        cout<<"\r["<<a<<" | "<<b<<" | "<<c<<"]"<<flush;
-
-        this_thread::sleep_for(chrono::milliseconds(100));
+    for(int i=0;i<5;i++){
+        cout<<"| "<<symbol[rand()%5]<<" | "<<symbol[rand()%5]<<" | "<<symbol[rand()%5]<<" |\r";
+        Sleep(200);
     }
 
-    cout<<endl;
+    for(int i=0;i<3;i++){
+        r[i] = symbol[rand()%5];
+    }
 
-    for(int i=0;i<3;i++)
-        result[i]=randomSymbol();
-
-    cout<<"Result: ["<<result[0]<<" | "<<result[1]<<" | "<<result[2]<<"]\n";
+    cout<<"| "<<r[0]<<" | "<<r[1]<<" | "<<r[2]<<" |\n";
 }
