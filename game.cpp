@@ -3,30 +3,36 @@
 #include <iostream>
 #include <fstream>
 #include <cstdlib>
+#include <thread>
+#include <chrono>
 
 using namespace std;
 
 void saveHistory(string r[3]){
 
     ofstream file("history.txt",ios::app);
-
     file<<r[0]<<" "<<r[1]<<" "<<r[2]<<endl;
+}
+
+void showSlot(string r[3]){
+    cout<<"\n";
+    cout<<"| "<<r[0]<<" | "<<r[1]<<" | "<<r[2]<<" |\n";
 }
 
 void doubleOrNothing(int &reward){
 
     char choice;
 
-    cout<<"Double or Nothing? (y/n): ";
+    cout<<"Double or Nothing? Lose everything! (y/n): ";
     cin>>choice;
 
     if(choice=='y'){
 
-        int r=rand()%10;
+        int r=rand()%2;
 
-        if(r%2==0){
+        if(r==1){
             reward*=2;
-            cout<<"Lucky! Reward doubled\n";
+            cout<<"Lucky! Reward doubled!\n";
         }
         else{
             reward=0;
@@ -45,7 +51,8 @@ void playGame(Player &p){
 
     while(p.token>0 && bossBank>0){
 
-        cout<<"\nToken: "<<p.token<<endl;
+        cout<<"\n========================\n";
+        cout<<"Token: "<<p.token<<endl;
         cout<<"Boss money: "<<bossBank<<endl;
 
         cout<<"Play? (y/n): ";
@@ -60,12 +67,18 @@ void playGame(Player &p){
         cin>>bet;
 
         if(bet>p.token){
-
             cout<<"Not enough token\n";
             continue;
         }
 
+        p.token-=bet;
+
+        cout<<"\nSpinning...\n";
+        this_thread::sleep_for(chrono::milliseconds(700));
+
         spinSlot(slot);
+
+        showSlot(slot);
 
         saveHistory(slot);
 
@@ -93,7 +106,7 @@ void playGame(Player &p){
         }
         else{
 
-            reward=-bet;
+            reward=0;
             cout<<"Lose\n";
         }
 
@@ -103,6 +116,8 @@ void playGame(Player &p){
         p.token+=reward;
 
         bossBank-=reward;
+
+        cout<<"Reward: "<<reward<<endl;
 
         if(p.token>p.maxToken)
             p.maxToken=p.token;
