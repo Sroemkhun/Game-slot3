@@ -22,20 +22,20 @@ void doubleOrNothing(int &reward){
 
     char choice;
 
-    cout << "Double or Nothing? Lose everything! (y/n): ";
-    cin >> choice;
+    cout<<"Double or Nothing? (y/n): ";
+    cin>>choice;
 
-    if(choice == 'y'){
+    if(choice=='y'){
 
         int r = rand()%10;
 
         if(r < 3){
             reward *= 2;
-            cout << "Lucky! Reward doubled!\n";
+            cout<<"Lucky! Reward doubled!\n";
         }
-        else{
-            reward *= -2;
-            cout << "Lose everything! Penalty x2\n";
+        else{   
+            reward = -reward;
+            cout<<"Lose everything!\n";
         }
     }
 }
