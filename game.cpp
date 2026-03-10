@@ -101,7 +101,7 @@ void playGame(Player &p){
         }
         else{
 
-            reward = 0;
+            reward *= -2;
             cout<<"Lose\n";
         }
 
