@@ -103,11 +103,11 @@ void playGame(){
 
         int reward = checkReward(result, bet);
 
-        if(reward > 0){
+            if(reward > 0){
             reward = doubleOrNothing(reward, bet);
         }
 
-        token += reward;
+        token = token + reward;
 
         saveHistory(result);
 
