@@ -26,3 +26,5 @@ A @ A
 A @ A
 7 Cherry A
 @ Cherry @
+@ 7 Cherry
+@ @ A
