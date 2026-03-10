@@ -41,7 +41,7 @@ int checkReward(string r[3], int bet){
     return -bet;
 }
 
-int doubleOrNothing(int reward){
+int doubleOrNothing(int reward, int bet){
 
     char choice;
     cout << "Double or Nothing ? (y/n): ";
@@ -58,11 +58,10 @@ int doubleOrNothing(int reward){
         return reward * 2;
     }
     else{
-        cout << "Bad luck! reward lost\n";
-        return 0;
+        cout << "Bad luck! Lose x2 bet\n";
+        return -(bet * 2);
     }
 }
-
 void playGame(){
 
     int token = 100;
