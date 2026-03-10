@@ -35,7 +35,7 @@ void doubleOrNothing(int &reward){
         }
         else{      
             reward *= -2;
-            cout<<"Lose everything! Penalty x2\n";
+            cout<<"Lose everything! Penalty\n";
         }
     }
 }
