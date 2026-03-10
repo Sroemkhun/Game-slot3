@@ -1,11 +1,8 @@
 #ifndef SLOT_H
 #define SLOT_H
 
-#include<string>
-using namespace std;
+#include <string>
 
-string spin();
-void showSlot(string s[3]);
-int checkReward(string s[3], int bet);
+std::string spinSlot();
 
 #endif

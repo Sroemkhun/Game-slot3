@@ -1,10 +1,8 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include<string>
-using namespace std;
+#include "player.h"
 
-void saveHistory(string s[3]);
-int doubleOrNothing(int reward);
+void playGame(Player &player);
 
 #endif
