@@ -29,11 +29,11 @@ void doubleOrNothing(int &reward){
 
         int r = rand()%10;
 
-        if(r < 3){
+        if(r < 3){   
             reward *= 2;
             cout<<"Lucky! Reward doubled!\n";
         }
-        else{   
+        else{       
             reward = -reward;
             cout<<"Lose everything!\n";
         }
