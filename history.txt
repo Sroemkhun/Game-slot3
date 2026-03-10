@@ -28,3 +28,16 @@ A @ A
 @ Cherry @
 @ 7 Cherry
 @ @ A
+A Cherry A
+A A Cherry
+7 Cherry A
+A ฿ Cherry
+7 A A
+A 7 Cherry
+Cherry Cherry @
+Cherry A @
+A A Cherry
+฿ A A
+฿ A 7
+฿ 7 A
+A A Cherry
