@@ -97,7 +97,7 @@ void playGame(){
         int reward = checkReward(result, bet);
 
         if(reward > 0){
-            reward = doubleOrNothing(reward);
+        reward = doubleOrNothing(reward, bet);
         }
 
         token += reward;
