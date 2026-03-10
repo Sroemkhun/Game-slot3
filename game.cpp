@@ -17,7 +17,6 @@ void showSlot(string r[3]){
     cout << "\n";
     cout << "| " << r[0] << " | " << r[1] << " | " << r[2] << " |\n";
 }
-
 void doubleOrNothing(int &reward){
 
     char choice;
@@ -75,10 +74,44 @@ void playGame(Player &p){
         saveHistory(slot);
 
         int reward = 0;
-
         if(slot[0] == slot[1] && slot[1] == slot[2]){
             if(slot[0] == "7"){
                 reward = bet * 10;
                 cout << "777 JACKPOT!!!\n";
             }
             else{
+                reward = bet * 5;
+                cout << "Triple match!\n";
+            }
+        }
+        else if(slot[0] == slot[1] || slot[1] == slot[2] || slot[0] == slot[2]){
+            reward = bet * 2;
+            cout << "Double match!\n";
+        }
+        else{
+            reward = -bet; 
+            cout << "Lose! Penalty applied.\n";
+        }
+        if(reward > 0) {
+            doubleOrNothing(reward);
+        }
+
+        p.token += reward;
+        bossBank -= reward;
+
+        cout << "Round Result: " << reward << endl;
+
+        if(p.token > p.maxToken)
+            p.maxToken = p.token;
+
+        p.round++;
+
+        if(p.round % 5 == 0){
+            cout << "Lucky Level! +20 token\n";
+            p.token += 20;
+        }
+    }
+
+    cout << "\nGame Over\n";
+    cout << "Max token: " << p.maxToken << endl;
+}
