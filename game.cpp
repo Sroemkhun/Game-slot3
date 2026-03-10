@@ -82,13 +82,3 @@ void playGame(Player &p){
                 cout << "777 JACKPOT!!!\n";
             }
             else{
-                reward = bet * 5;
-                cout << "Triple match!\n";
-            }
-        }
-        else if(slot[0] == slot[1] || slot[1] == slot[2] || slot[0] == slot[2]){
-            reward = bet * 2;
-            cout << "Double match!\n";
-        }
-        else{
-            reward =
