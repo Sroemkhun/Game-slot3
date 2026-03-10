@@ -58,3 +58,11 @@ Cherry A A
 @ Cherry @
 A 7 @
 A A ฿
+Cherry @ ฿
+฿ Cherry A
+@ A 7
+7 A @
+฿ ฿ ฿
+A @ A
+@ @ A
+7 @ @
