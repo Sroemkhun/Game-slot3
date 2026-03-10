@@ -33,9 +33,9 @@ void doubleOrNothing(int &reward){
             reward *= 2;
             cout<<"Lucky! Reward doubled!\n";
         }
-        else{      
-            reward *= -2;
-            cout<<"Lose everything! Penalty\n";
+        else {
+            reward = -(reward * 2); 
+            cout << "Lose everything! Double Penalty!\n";
         }
     }
 }
@@ -101,7 +101,7 @@ void playGame(Player &p){
         }
         else{
 
-            reward *= -2;
+            reward = -(reward * 2); 
             cout<<"Lose\n";
         }
 
