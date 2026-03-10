@@ -33,7 +33,7 @@ int checkReward(string r[3], int bet){
     }
 
     else if(r[0] == r[1] || r[1] == r[2] || r[0] == r[2]){
-        cout << "Double Match!\n";
+        cout << "Double match!\n";
         return bet * 2;
     }
 
@@ -44,7 +44,7 @@ int checkReward(string r[3], int bet){
 int doubleOrNothing(int reward, int bet){
 
     char choice;
-    cout << "Double or Nothing ? (y/n): ";
+    cout << "Double or Nothing? (y/n): ";
     cin >> choice;
 
     if(choice != 'y'){
@@ -58,10 +58,11 @@ int doubleOrNothing(int reward, int bet){
         return reward * 2;
     }
     else{
-        cout << "Bad luck! Lose x2 bet\n";
+        cout << "Lose everything!\n";
         return -(bet * 2);
     }
 }
+
 void playGame(){
 
     int token = 100;
@@ -72,7 +73,7 @@ void playGame(){
         cout << "\nToken: " << token << endl;
 
         char play;
-        cout << "Play ? (y/n): ";
+        cout << "Play? (y/n): ";
         cin >> play;
 
         if(play != 'y'){
@@ -80,7 +81,7 @@ void playGame(){
         }
 
         int bet;
-        cout << "Bet: ";
+        cout << "Bet token: ";
         cin >> bet;
 
         if(bet > token){
@@ -88,16 +89,22 @@ void playGame(){
             continue;
         }
 
+        cout << "\nSpinning...\n";
+        this_thread::sleep_for(chrono::milliseconds(500));
+
         string result[3];
 
         spinSlot(result);
 
-        showSlot(result);
+        cout << "Result: ["
+            << result[0] << " | "
+            << result[1] << " | "
+            << result[2] << "]\n";
 
         int reward = checkReward(result, bet);
 
         if(reward > 0){
-        reward = doubleOrNothing(reward, bet);
+            reward = doubleOrNothing(reward, bet);
         }
 
         token += reward;
