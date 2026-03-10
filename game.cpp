@@ -19,7 +19,6 @@ void showSlot(string r[3]){
 }
 
 void doubleOrNothing(int &reward){
-    
 
     char choice;
     cout << "Double or Nothing? Lose everything! (y/n): ";
