@@ -17,6 +17,7 @@ void showSlot(string r[3]){
     cout << "\n";
     cout << "| " << r[0] << " | " << r[1] << " | " << r[2] << " |\n";
 }
+
 void doubleOrNothing(int &reward){
 
     char choice;
