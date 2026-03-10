@@ -41,3 +41,6 @@ A A Cherry
 ฿ A 7
 ฿ 7 A
 A A Cherry
+@ 7 7
+7 ฿ @
+Cherry Cherry Cherry
