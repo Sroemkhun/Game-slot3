@@ -65,6 +65,8 @@ int doubleOrNothing(int reward, int bet){
 
 void playGame(){
 
+    srand(time(0));
+
     int token = 100;
     int round = 0;
 
@@ -103,11 +105,11 @@ void playGame(){
 
         int reward = checkReward(result, bet);
 
-            if(reward > 0){
+        if(reward > 0){
             reward = doubleOrNothing(reward, bet);
         }
 
-        token = token + reward;
+        token += reward;
 
         saveHistory(result);
 

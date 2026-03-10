@@ -2,8 +2,8 @@
 #define SLOT_H
 
 #include <string>
+using namespace std;
 
-std::string randomSymbol();
-void spinSlot(std::string result[3]);
+void spinSlot(string r[3]);
 
 #endif

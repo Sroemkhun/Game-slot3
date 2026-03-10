@@ -1,11 +1,13 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include "player.h"
 #include <string>
+using namespace std;
 
-void playGame(Player &p);
-void saveHistory(std::string r[3]);
-void doubleOrNothing(int &reward);
+void playGame();
+int checkReward(string r[3], int bet);
+int doubleOrNothing(int reward, int bet);
+void saveHistory(string r[3]);
+void showSlot(string r[3]);
 
 #endif
