@@ -14,117 +14,104 @@ void saveHistory(string r[3]){
 }
 
 void showSlot(string r[3]){
-    cout << "\n";
-    cout << "| " << r[0] << " | " << r[1] << " | " << r[2] << " |\n";
+    cout << "-----------------\n";
+    cout << r[0] << " | " << r[1] << " | " << r[2] << endl;
+    cout << "-----------------\n";
 }
 
-void doubleOrNothing(int &reward){
+int checkReward(string r[3], int bet){
+
+    if(r[0] == r[1] && r[1] == r[2]){
+
+        if(r[0] == "7"){
+            cout << "JACKPOT 777 !!!\n";
+            return bet * 10;
+        }
+
+        cout << "Triple Match!\n";
+        return bet * 5;
+    }
+
+    else if(r[0] == r[1] || r[1] == r[2] || r[0] == r[2]){
+        cout << "Double Match!\n";
+        return bet * 2;
+    }
+
+    cout << "Lose\n";
+    return -bet;
+}
+
+int doubleOrNothing(int reward){
 
     char choice;
+    cout << "Double or Nothing ? (y/n): ";
+    cin >> choice;
 
-    cout<<"Double or Nothing? (y/n): ";
-    cin>>choice;
+    if(choice != 'y'){
+        return reward;
+    }
 
-    if(choice=='y'){
+    int n = rand() % 10;
 
-        int r = rand()%10;
-
-        if(r < 3){   
-            reward *= 2;
-            cout<<"Lucky! Reward doubled!\n";
-        }
-        else{       
-            reward = -reward - 20 ;
-            cout<<"Lose everything!\n";
-        }
+    if(n % 2 == 0){
+        cout << "Lucky! Reward x2\n";
+        return reward * 2;
+    }
+    else{
+        cout << "Bad luck! reward lost\n";
+        return 0;
     }
 }
 
-void playGame(Player &p){
+void playGame(){
 
-    string slot[3];
-    int bossBank = 500;
-    char play;
+    int token = 100;
+    int round = 0;
 
-    while(p.token > 0 && bossBank > 0){
+    while(token > 0){
 
-        cout << "\n========================\n";
-        cout << "Token: " << p.token << endl;
-        cout << "Boss money: " << bossBank << endl;
+        cout << "\nToken: " << token << endl;
 
-        cout << "Play? (y/n): ";
+        char play;
+        cout << "Play ? (y/n): ";
         cin >> play;
 
-        if(play != 'y')
+        if(play != 'y'){
             break;
+        }
 
         int bet;
-
-        cout << "Bet token: ";
+        cout << "Bet: ";
         cin >> bet;
 
-        if(bet > p.token){
+        if(bet > token){
             cout << "Not enough token\n";
             continue;
         }
 
-        p.token -= bet;
+        string result[3];
 
-        cout << "\nSpinning...\n";
-        this_thread::sleep_for(chrono::milliseconds(700));
+        spinSlot(result);
 
-        spinSlot(slot);
+        showSlot(result);
 
-        showSlot(slot);
+        int reward = checkReward(result, bet);
 
-        saveHistory(slot);
-
-        int reward = 0;
-
-        if(slot[0] == slot[1] && slot[1] == slot[2]){
-
-            if(slot[0] == "7"){
-                reward = bet * 10;
-                cout << "777 JACKPOT!!!\n";
-            }
-            else{
-                reward = bet * 5;
-                cout << "Triple match!\n";
-            }
-
-        }
-        else if(slot[0] == slot[1] || slot[1] == slot[2] || slot[0] == slot[2]){
-
-            reward = bet * 2;
-            cout << "Double match!\n";
-
-        }
-        else{
-
-            reward = 0;
-            cout << "Lose\n";
+        if(reward > 0){
+            reward = doubleOrNothing(reward);
         }
 
-        if(reward > 0)
-            doubleOrNothing(reward);
+        token += reward;
 
-        p.token += reward;
+        saveHistory(result);
 
-        bossBank -= reward;
+        round++;
 
-        cout << "Reward: " << reward << endl;
-
-        if(p.token > p.maxToken)
-            p.maxToken = p.token;
-
-        p.round++;
-
-        if(p.round % 5 == 0){
-            cout << "Lucky Level! +20 token\n";
-            p.token += 20;
+        if(round % 5 == 0){
+            cout << "Lucky Level Bonus +10 token\n";
+            token += 10;
         }
     }
 
     cout << "\nGame Over\n";
-    cout << "Max token: " << p.maxToken << endl;
 }
