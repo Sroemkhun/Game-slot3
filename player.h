@@ -4,7 +4,11 @@
 struct Player{
     int token;
     int maxToken;
-    int round;
+    int roundPlayed;
+};
+
+struct Boss{
+    int money;
 };
 
 #endif
